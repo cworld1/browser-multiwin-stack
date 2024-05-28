@@ -51,19 +51,28 @@
     <div class="circle"></div>
 
     <script>
-      //   console.log(window.screenX, window.screenY);
-      const circle = document.querySelector(".circle");
+      // Open alert if first run
+      if (!sessionStorage.getItem("hasShownTip")) {
+        alert(
+          "Test broswer experimental api! Click the circle image to run.\nYou can change the size of window, add more windows for better test."
+        );
+        sessionStorage.setItem("hasShownTip", true);
+      }
 
+      // console.log(window.screenX, window.screenY);
       let availTop = 0;
       let availLeft = 0;
 
+      // Add click listener
+      const circle = document.querySelector(".circle");
       circle.addEventListener("click", async () => {
         try {
           const screenDetails = await window.getScreenDetails();
-          //   console.log(screenDetails);
+          // console.log(screenDetails);
           availTop = screenDetails.currentScreen.availTop;
           availLeft = screenDetails.currentScreen.availLeft;
         } catch (error) {
+          // when error
           alert(
             "Something wrong.\nMaybe your broswer is not support with this experimental api. \n\nErrors:\n" +
               error
@@ -74,6 +83,7 @@
         window.requestAnimationFrame(update);
       });
 
+      // Update the pos of circle
       function update() {
         const screenX = window.screenX;
         const screenY = window.screenY;

@@ -12,6 +12,10 @@ A demo program that shows effect of browser multi-window stacking, using new bro
 
 ![screenshot](src/screenshot.png)
 
+## Known issue
+
+- For Firefox, it cannot work still. See [#1](https://github.com/cworld1/browser-multiwin-stack/issues/1).
+
 ## Local development
 
 Environment requirements:

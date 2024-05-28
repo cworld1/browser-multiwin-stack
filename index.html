@@ -1,0 +1,67 @@
+<!-- 浏览器多窗口堆叠特效 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browser multi-window stacking effect</title>
+    <style>
+      :root {
+        --offset-x: 0px;
+        --offset-y: 0px;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .circle {
+        width: 600px;
+        height: 600px;
+        background-color: black;
+        background-image: url(./logo_origin.png);
+        background-size: cover;
+        border-radius: 50%;
+        position: absolute;
+        top: calc(100px - var(--offset-y));
+        left: calc(100px - var(--offset-x));
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="circle"></div>
+
+    <script>
+      //   console.log(window.screenX, window.screenY);
+      const circle = document.querySelector(".circle");
+
+      let availTop = 0;
+      let availLeft = 0;
+
+      circle.addEventListener("click", async () => {
+        try {
+          const screenDetails = await window.getScreenDetails();
+          //   console.log(screenDetails);
+          availTop = screenDetails.currentScreen.availTop;
+          availLeft = screenDetails.currentScreen.availLeft;
+        } catch (error) {
+          console.error(error);
+        }
+
+        window.requestAnimationFrame(update);
+      });
+
+      function update() {
+        const screenX = window.screenX;
+        const screenY = window.screenY;
+
+        circle.style.setProperty("--offset-x", `${screenX - availLeft}px`);
+        circle.style.setProperty("--offset-y", `${screenY - availLeft}px`);
+
+        window.requestAnimationFrame(update);
+      }
+    </script>
+  </body>
+</html>

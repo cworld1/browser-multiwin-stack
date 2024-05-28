@@ -64,6 +64,10 @@
           availTop = screenDetails.currentScreen.availTop;
           availLeft = screenDetails.currentScreen.availLeft;
         } catch (error) {
+          alert(
+            "Something wrong.\nMaybe your broswer is not support with this experimental api. \n\nErrors:\n" +
+              error
+          );
           console.error(error);
         }
 

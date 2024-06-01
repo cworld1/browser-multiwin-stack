@@ -8,6 +8,10 @@
 
 A demo program that shows effect of browser multi-window stacking, using new broswer experimental window api called `window.getScreenDetails`.
 
+## Online demo
+
+[Demo (Github)](https://cworld1.github.io/browser-multiwin-stack/)
+
 ## Screenshot
 
 ![screenshot](src/screenshot.png)
